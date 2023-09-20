@@ -152,68 +152,67 @@ class LCD_2inch(framebuf.FrameBuffer): # For 320x240 display
         self.spi.write(self.buffer)
         self.cs(1)
         
-  
-pwm = PWM(Pin(BL))
-pwm.freq(1000)
-pwm.duty_u16(32768)#max 65535
+if __name__=='__main__':
+    pwm = PWM(Pin(BL))
+    pwm.freq(1000)
+    pwm.duty_u16(32768)#max 65535
 
-LCD = LCD_2inch()
-#color BRG
-LCD.fill(LCD.white)
-
-
-LCD.show()
+    LCD = LCD_2inch()
+    #color BRG
+    LCD.fill(LCD.white)
 
 
-
-key0 = Pin(15,Pin.IN,Pin.PULL_UP)
-key1 = Pin(3,Pin.IN,Pin.PULL_UP)
-key2 = Pin(17 ,Pin.IN,Pin.PULL_UP)
-key3 = Pin(2 ,Pin.IN,Pin.PULL_UP)
-
-
-running = True
-
-while running:
-    
-    t = 0
-    
-    if key0.value() == 0:
-        LCD.fill_rect(15,15,30,30,LCD.red)
-        t=t+1
-    else: 
-        LCD.fill_rect(15,15,30,30,LCD.white)
-        LCD.rect(15,15,30,30,LCD.red)
-        
-        
-    if(key1.value() == 0):
-        LCD.fill_rect(15,195,30,30,LCD.red)
-        t=t+2
-    else :
-        LCD.fill_rect(15,195,30,30,LCD.white)
-        LCD.rect(15,195,30,30,LCD.red)
-        
-    if(key2.value() == 0):
-        LCD.fill_rect(275,15,30,30,LCD.red)
-        t=t+4
-    else :
-        LCD.fill_rect(275,15,30,30,LCD.white)
-        LCD.rect(275,15,30,30,LCD.red)
-        
-    if(key3.value() == 0):
-        LCD.fill_rect(275,195,30,30,LCD.red)
-        t=t+8
-    else :
-        LCD.fill_rect(275,195,30,30,LCD.white)
-        LCD.rect(275,195,30,30,LCD.red)
-        
-    if(t !=0):
-        LCD.fill_rect(114,120,120,8,LCD.white)
-        LCD.text("key "+str(t)+" pressed",114,120,LCD.red)
-    else:
-        LCD.fill_rect(114,120,120,8,LCD.white)
-        
     LCD.show()
-time.sleep(1)
-LCD.fill(0xFFFF)
+
+
+
+    key0 = Pin(15,Pin.IN,Pin.PULL_UP)
+    key1 = Pin(3,Pin.IN,Pin.PULL_UP)
+    key2 = Pin(17 ,Pin.IN,Pin.PULL_UP)
+    key3 = Pin(2 ,Pin.IN,Pin.PULL_UP)
+
+
+    while(1):
+        
+        t = 0
+        
+        if key0.value() == 0:
+            LCD.fill_rect(15,15,30,30,LCD.red)
+            t=t+1
+        else: 
+            LCD.fill_rect(15,15,30,30,LCD.white)
+            LCD.rect(15,15,30,30,LCD.red)
+            
+            
+        if(key1.value() == 0):
+            LCD.fill_rect(15,195,30,30,LCD.red)
+            t=t+2
+        else :
+            LCD.fill_rect(15,195,30,30,LCD.white)
+            LCD.rect(15,195,30,30,LCD.red)
+            
+        if(key2.value() == 0):
+            LCD.fill_rect(275,15,30,30,LCD.red)
+            t=t+4
+        else :
+            LCD.fill_rect(275,15,30,30,LCD.white)
+            LCD.rect(275,15,30,30,LCD.red)
+            
+        if(key3.value() == 0):
+            LCD.fill_rect(275,195,30,30,LCD.red)
+            t=t+8
+        else :
+            LCD.fill_rect(275,195,30,30,LCD.white)
+            LCD.rect(275,195,30,30,LCD.red)
+            
+        if(t !=0):
+            LCD.fill_rect(114,120,120,8,LCD.white)
+            LCD.text("key "+str(t)+" pressed",114,120,LCD.red)
+        else:
+            LCD.fill_rect(114,120,120,8,LCD.white)
+            
+        LCD.show()
+    time.sleep(1)
+    LCD.fill(0xFFFF)
+
 
