@@ -1,3 +1,10 @@
+- 1602A LCD Display
+- 1602A I2C Module
+- Light detection Module V2.0
+- MH-Real-Time Clock Modules - 2
+- Pico H or Pico W
+- Dupont Line + Breadboard
+
 I2C 1602A Display tut:https://www.tomshardware.com/how-to/lcd-display-raspberry-pi-pico
 
 DS1302 Clock RTC tut:https://github.com/Guitarman9119/Raspberry-Pi-Pico-/tree/main/DS1302%20RTC
