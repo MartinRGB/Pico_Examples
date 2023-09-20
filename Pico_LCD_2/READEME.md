@@ -1,0 +1,2 @@
+- Waveshare Pico LCD 2
+- Pico H or Pico W
